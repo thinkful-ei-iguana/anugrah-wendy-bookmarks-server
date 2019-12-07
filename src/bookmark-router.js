@@ -1,13 +1,13 @@
 const express = require("express");
 const uuid = require("uuid/v4");
-
 const bookmarkRouter = express.Router();
 const bodyParser = express.json();
+
 const logger = require("./logger");
 const bookmarks = require("./dataStore");
 
 bookmarkRouter
-  .route("/bookmarks")
+  .route("/")
   .get((req, res) => {
     res.json(bookmarks);
   })
@@ -62,7 +62,7 @@ bookmarkRouter
   });
 
 bookmarkRouter
-  .route("/bookmarks/:id")
+  .route("/:id")
   .get((req, res) => {
     const { id } = req.params;
     const bookmark = bookmarks.find(bm => bm.id == id);
